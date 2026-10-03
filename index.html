@@ -2,19 +2,21 @@
 <html>
 <head>
   <title>Fake News Detector</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Fake News Detector</h1>
+  <div class="container">
+    <h1>🧠 Fake News Detector</h1>
+    <p>Check if your news is real or fake using AI</p>
 
-  <textarea id="inputText" placeholder="Enter news..."></textarea>
-  <br><br>
+    <textarea id="inputText" placeholder="Paste news here..."></textarea>
 
-  <button onclick="checkNews()">Check</button>
+    <button onclick="checkNews()">Analyze</button>
 
-  <p id="result"></p>
+    <p id="result"></p>
+  </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
