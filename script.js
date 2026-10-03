@@ -1,30 +1,27 @@
-function checkNews() {
+function goToPage2() {
+  document.getElementById("page1").style.display = "none";
+  document.getElementById("page2").style.display = "block";
+}
+
+function goToPage1() {
+  document.getElementById("page3").style.display = "none";
+  document.getElementById("page1").style.display = "block";
+}
+
+function analyze() {
   let text = document.getElementById("inputText").value.toLowerCase();
+
+  document.getElementById("page2").style.display = "none";
+  document.getElementById("page3").style.display = "block";
+
   let result = document.getElementById("result");
+  let explanation = document.getElementById("explanation");
 
-  result.innerText = "Analyzing... ⏳";
-
-  setTimeout(() => {
-
-    if (text.length < 20) {
-      result.innerText = "⚠️ Please enter more detailed news.";
-      result.style.color = "yellow";
-    }
-
-    else if (
-      text.includes("breaking") ||
-      text.includes("shocking") ||
-      text.includes("viral") ||
-      text.includes("you won't believe")
-    ) {
-      result.innerText = "❌ Likely Fake News";
-      result.style.color = "red";
-    }
-
-    else {
-      result.innerText = "✅ Seems Real";
-      result.style.color = "lightgreen";
-    }
-
-  }, 1200);
+  if (text.includes("breaking") || text.includes("shocking")) {
+    result.innerText = "❌ Fake News";
+    explanation.innerText = "This contains clickbait words like 'breaking' or 'shocking', often used in fake news.";
+  } else {
+    result.innerText = "✅ Likely Real";
+    explanation.innerText = "This appears informational and lacks clickbait indicators.";
+  }
 }
