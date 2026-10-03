@@ -1,26 +1,48 @@
 body {
-  font-family: Arial;
-  background: #1e1e2f;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
-  text-align: center;
-  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
+/* Card UI */
 .page {
-  max-width: 400px;
-  margin: auto;
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  width: 350px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
+/* Textarea */
 textarea {
   width: 100%;
-  height: 100px;
-  margin: 10px 0;
+  height: 120px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  margin-top: 15px;
 }
 
+/* Button */
 button {
-  padding: 10px 20px;
-  background: #00c6ff;
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
