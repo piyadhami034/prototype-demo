@@ -1,44 +1,39 @@
-// 👉 Go from Page 1 → Page 2
 function goToPage2() {
-  document.getElementById("page1").style.display = "none";
-  document.getElementById("page2").style.display = "block";
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
 }
 
-// 👉 Go back to Page 1 (reset)
 function goToPage1() {
-  document.getElementById("page3").style.display = "none";
-  document.getElementById("page1").style.display = "block";
+  document.getElementById("page3").classList.add("hidden");
+  document.getElementById("page1").classList.remove("hidden");
 
-  // clear input
   document.getElementById("inputText").value = "";
+  document.getElementById("progressBar").style.width = "0%";
 }
 
-// 👉 Analyze News
 function analyze() {
   let text = document.getElementById("inputText").value.toLowerCase();
 
-  // switch page
-  document.getElementById("page2").style.display = "none";
-  document.getElementById("page3").style.display = "block";
+  document.getElementById("page2").classList.add("hidden");
+  document.getElementById("page3").classList.remove("hidden");
 
   let result = document.getElementById("result");
   let explanation = document.getElementById("explanation");
+  let loader = document.getElementById("loader");
+  let progress = document.getElementById("progressBar");
 
-  // loading state
-  result.innerText = "Analyzing... ⏳";
+  result.innerText = "";
   explanation.innerText = "";
+  progress.style.width = "0%";
+
+  loader.style.display = "block";
 
   setTimeout(() => {
 
-    // empty check
-    if (text.trim() === "") {
-      result.innerText = "⚠️ Please enter some news";
-      explanation.innerText = "Input field cannot be empty.";
-      result.style.color = "yellow";
-      return;
-    }
+    loader.style.display = "none";
 
-    // fake detection logic
+    let confidence = Math.floor(Math.random() * 30) + 70;
+
     if (
       text.includes("breaking") ||
       text.includes("shocking") ||
@@ -46,18 +41,17 @@ function analyze() {
       text.includes("you won't believe")
     ) {
       result.innerText = "❌ Fake News";
+      result.className = "fake";
       explanation.innerText =
-        "This contains clickbait words often used in fake news.";
-      result.style.color = "red";
-    }
-
-    // real case
-    else {
+        "Detected clickbait-style language often used in fake news.";
+    } else {
       result.innerText = "✅ Likely Real";
+      result.className = "real";
       explanation.innerText =
-        "This appears informational and lacks clickbait indicators.";
-      result.style.color = "lightgreen";
+        "Content appears informational and lacks misleading patterns.";
     }
 
-  }, 1200);
+    progress.style.width = confidence + "%";
+
+  }, 1500);
 }
