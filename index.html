@@ -4,54 +4,55 @@
   <meta charset="UTF-8">
   <title>Fake News Detector</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- 🌟 Page 1 -->
-  <div id="page1" class="page">
-    <div class="card">
-      <h1>🧠 Fake News Detector</h1>
-      <p class="subtitle">Analyze news using AI</p>
-      <button onclick="goToPage2()">Start</button>
-    </div>
+<!-- PAGE 1 -->
+<div id="page1" class="page">
+  <div class="card">
+    <h1>🧠 Fake News Detector</h1>
+    <p>AI-powered verification for news</p>
+    <button onclick="goToPage2()">Start Analysis</button>
   </div>
+</div>
 
-  <!-- ✍️ Page 2 -->
-  <div id="page2" class="page hidden">
-    <div class="card">
-      <h2>Enter News</h2>
-      <textarea id="inputText" placeholder="Paste your news here..."></textarea>
-      <button onclick="analyze()">Analyze</button>
-    </div>
+<!-- PAGE 2 -->
+<div id="page2" class="page hidden">
+  <div class="card">
+    <h2>Paste News</h2>
+    <textarea id="inputText" placeholder="Enter news headline or content..."></textarea>
+    <button onclick="analyze()">Analyze</button>
   </div>
+</div>
 
-  <!-- 📊 Page 3 -->
-  <div id="page3" class="page hidden">
-    <div class="card">
-      <h2>Result</h2>
+<!-- PAGE 3 -->
+<div id="page3" class="page hidden">
+  <div class="card">
 
-      <!-- Loader -->
-      <div id="loader" class="loader"></div>
+    <h2>Analysis Result</h2>
 
-      <!-- Result -->
-      <p id="result"></p>
-      <p id="explanation" class="explanation"></p>
+    <div id="loader" class="loader"></div>
 
-      <!-- Confidence Bar -->
-      <div class="progress-container">
-        <div id="progressBar"></div>
-      </div>
+    <p id="result"></p>
+    <p id="confidenceText"></p>
+    <p id="explanation"></p>
 
-      <button onclick="goToPage1()">Check Again</button>
+    <!-- progress -->
+    <div class="progress-container">
+      <div id="progressBar"></div>
     </div>
+
+    <!-- sources -->
+    <div id="sources" class="sources"></div>
+
+    <button onclick="goToPage1()">Analyze Again</button>
+
   </div>
+</div>
 
-  <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
