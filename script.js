@@ -1,46 +1,63 @@
-async function analyze() {
-  let text = document.getElementById("inputText").value;
+// 👉 Go from Page 1 → Page 2
+function goToPage2() {
+  document.getElementById("page1").style.display = "none";
+  document.getElementById("page2").style.display = "block";
+}
 
+// 👉 Go back to Page 1 (reset)
+function goToPage1() {
+  document.getElementById("page3").style.display = "none";
+  document.getElementById("page1").style.display = "block";
+
+  // clear input
+  document.getElementById("inputText").value = "";
+}
+
+// 👉 Analyze News
+function analyze() {
+  let text = document.getElementById("inputText").value.toLowerCase();
+
+  // switch page
   document.getElementById("page2").style.display = "none";
   document.getElementById("page3").style.display = "block";
 
   let result = document.getElementById("result");
   let explanation = document.getElementById("explanation");
 
-  result.innerText = "Checking with AI... ⏳";
+  // loading state
+  result.innerText = "Analyzing... ⏳";
   explanation.innerText = "";
 
-  try {
-    const res = await fetch("https://real-check.org/api/factcheck", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY"
-      },
-      body: JSON.stringify({
-        claim: text,
-        mode: "auto"
-      })
-    });
+  setTimeout(() => {
 
-    const data = await res.json();
-
-    // verdict
-    if (data.verdict === "false") {
-      result.innerText = "❌ Fake News";
-      result.style.color = "red";
-    } else if (data.verdict === "true") {
-      result.innerText = "✅ Real News";
-      result.style.color = "lightgreen";
-    } else {
-      result.innerText = "⚠️ Unverified";
+    // empty check
+    if (text.trim() === "") {
+      result.innerText = "⚠️ Please enter some news";
+      explanation.innerText = "Input field cannot be empty.";
       result.style.color = "yellow";
+      return;
     }
 
-    // explanation
-    explanation.innerText = data.summary;
+    // fake detection logic
+    if (
+      text.includes("breaking") ||
+      text.includes("shocking") ||
+      text.includes("viral") ||
+      text.includes("you won't believe")
+    ) {
+      result.innerText = "❌ Fake News";
+      explanation.innerText =
+        "This contains clickbait words often used in fake news.";
+      result.style.color = "red";
+    }
 
-  } catch (err) {
-    result.innerText = "Error fetching AI result";
-  }
+    // real case
+    else {
+      result.innerText = "✅ Likely Real";
+      explanation.innerText =
+        "This appears informational and lacks clickbait indicators.";
+      result.style.color = "lightgreen";
+    }
+
+  }, 1200);
 }
